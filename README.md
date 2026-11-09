@@ -21,7 +21,7 @@
 | 暗殺教室 | [暗殺教室](暗殺教室/README.md) | [story](暗殺教室/story/README.md) |
 | ハイキュー!! | [ハイキュー!!](ハイキュー!!/README.md) | [story](ハイキュー!!/story/README.md) |
 | ブルーロック | [ブルーロック](ブルーロック/README.md) | [story](ブルーロック/story/README.md) |
-| VIVANT（ドラマ） | [VIVANT](VIVANT/README.md) | [story](VIVANT/story/README.md) |
+| VIVANT（ドラマ） | [VIVANT](VIVANT/README.md) | [S1](VIVANT/story/README.md)／[S2](VIVANT/story/シーズン2.md) |
 
 収録範囲・未完作品の上限・出典の考え方は [docs/ストーリー要約のカバレッジ.md](docs/ストーリー要約のカバレッジ.md) にまとめています。
 
