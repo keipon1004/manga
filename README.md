@@ -70,7 +70,10 @@
 
 空のひな形はすべて **`テンプレート/`** にあります。話・巻ごとに自分で追記するときのひな形として使います。
 
+## 公開サイト（GitHub Pages）
+
+Markdown が正本です。`npm run build` で `dist/` に静的 HTML を生成し、GitHub Actions（`.github/workflows/deploy-pages.yml`）が `main` への push で **https://keipon1004.github.io/manga/** に公開します。
+
 ## このリポジトリでやらないこと
 
-- 自動同期・アプリ・スクリプトによる一覧生成は想定していません。
-- ファイルを追加・編集するだけのシンプルな運用です。
+- アプリ化や Markdown 以外への自動同期は想定していません（Pages 用ビルドを除く）。
