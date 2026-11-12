@@ -1,0 +1,15 @@
+{
+  "name": "manga-journal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "validate": "node scripts/validate-site.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "marked": "^15.0.6"
+  }
+}
