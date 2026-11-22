@@ -14,7 +14,8 @@ import {
   parseWorkMeta,
   collectMarkdownUnderWork,
 } from "./lib/discover.mjs";
-import { layout, emptyState, escapeHtml } from "./lib/layout.mjs";
+import { layout, escapeHtml } from "./lib/layout.mjs";
+import { isKingdomMarkdown, prepareKingdomMarkdown, renderKingdomPage } from "./lib/kingdom-dads.mjs";
 
 const BASE = normalizeBase(process.env.BASE_PATH);
 const OUT = path.join(REPO_ROOT, "dist");
@@ -30,10 +31,30 @@ function writePage(distRel, html) {
 }
 
 function copyAsset() {
-  const src = path.join(REPO_ROOT, "site", "assets", "css", "main.css");
-  const dest = path.join(OUT, "assets", "css", "main.css");
-  ensureDir(path.dirname(dest));
-  fs.copyFileSync(src, dest);
+  const cssDir = path.join(OUT, "assets", "css");
+  ensureDir(cssDir);
+  fs.copyFileSync(path.join(REPO_ROOT, "site", "assets", "css", "main.css"), path.join(cssDir, "main.css"));
+  fs.copyFileSync(path.join(REPO_ROOT, "site", "assets", "css", "kingdom.css"), path.join(cssDir, "kingdom.css"));
+
+  const vendorCss = path.join(REPO_ROOT, "site", "vendor", "dads", "css");
+  const destVendor = path.join(OUT, "assets", "dads");
+  const destCss = path.join(destVendor, "css");
+  ensureDir(destCss);
+  for (const name of fs.readdirSync(vendorCss)) {
+    if (name.endsWith(".css")) fs.copyFileSync(path.join(vendorCss, name), path.join(destCss, name));
+  }
+  fs.copyFileSync(
+    path.join(REPO_ROOT, "node_modules", "@digital-go-jp", "design-tokens", "dist", "tokens.css"),
+    path.join(destVendor, "tokens.css")
+  );
+  fs.copyFileSync(
+    path.join(REPO_ROOT, "site", "vendor", "dads", "LICENSE-components.txt"),
+    path.join(destVendor, "LICENSE-components.txt")
+  );
+  fs.copyFileSync(
+    path.join(REPO_ROOT, "site", "vendor", "dads", "LICENSE-design-tokens.txt"),
+    path.join(destVendor, "LICENSE-design-tokens.txt")
+  );
 }
 
 function rewriteTemplateLink(href) {
@@ -85,6 +106,20 @@ function isKansouPath(mdRel) {
 }
 
 function renderMarkdownPage({ mdRel, md, title, description, breadcrumbs = [] }) {
+  if (isKingdomMarkdown(mdRel)) {
+    const prepared = prepareKingdomMarkdown(md);
+    const source = isStoryPath(mdRel) ? prepared.md : md;
+    return renderKingdomPage({
+      base: BASE,
+      mdRel,
+      proseHtml: markdownToHtml(source, mdRel),
+      sourceMd: md,
+      title,
+      description,
+      breadcrumbs,
+    });
+  }
+
   const spoiler = isStoryPath(mdRel) ? extractSpoilerBanner(md) : null;
   const spoilerHtml = spoiler
     ? `<div class="spoiler-banner" role="note"><strong class="spoiler-banner__label">注意</strong><p>${escapeHtml(spoiler)}</p></div>`

@@ -77,6 +77,22 @@ function main() {
     if (!sample.includes("spoiler-banner")) errors.push("sample story missing spoiler banner");
   }
 
+  const kingdomStory = fs.readFileSync(path.join(DIST, "キングダム/story/index.html"), "utf8");
+  const kingdomMarkers = ["信と嬴政", "飛信隊", "合従軍", "黒羊", "番吾", "韓攻略", "アニメイトタイムズ", "80巻より先"];
+  for (const marker of kingdomMarkers) {
+    if (!kingdomStory.includes(marker)) errors.push(`kingdom story missing content: ${marker}`);
+  }
+  if (!kingdomStory.includes("dads-heading") || !kingdomStory.includes("dads-notification-banner")) {
+    errors.push("kingdom story missing design system components");
+  }
+  if (!kingdomStory.includes("assets/dads/tokens.css")) {
+    errors.push("kingdom story missing design tokens stylesheet");
+  }
+  const otherStory = fs.readFileSync(path.join(DIST, "はじめの一歩/story/index.html"), "utf8");
+  if (otherStory.includes("kingdom-body") || otherStory.includes("dads-heading")) {
+    errors.push("non-kingdom story picked up the Kingdom design-system layout");
+  }
+
   if (errors.length) {
     console.error("Validation failed:\n" + errors.join("\n"));
     process.exit(1);
