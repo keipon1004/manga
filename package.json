@@ -10,6 +10,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@digital-go-jp/design-tokens": "^2.1.0",
     "marked": "^15.0.6"
   }
 }

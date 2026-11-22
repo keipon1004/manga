@@ -1,0 +1,210 @@
+/* Kingdom pages.
+   Tokens: @digital-go-jp/design-tokens (loaded before this file).
+   Components: digital-go-jp/design-system-example-components-html v20261021.
+   Spacing follows the 8px scale (8 / 16 / 24 / 64). Breakpoint is 48rem (768px). */
+
+.kingdom-body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-neutral-white);
+  color: var(--color-neutral-solid-gray-800);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+  line-height: var(--line-height-175);
+  letter-spacing: 0.02em;
+}
+
+.kingdom-skip {
+  position: fixed;
+  inset-inline-start: calc(16 / 16 * 1rem);
+  inset-block-start: calc(16 / 16 * 1rem);
+  z-index: 100;
+  transform: translateY(-200%);
+}
+
+.kingdom-skip:focus {
+  transform: none;
+}
+
+.kingdom-header {
+  background-color: var(--color-neutral-white);
+  border-bottom: 1px solid var(--color-neutral-solid-gray-420);
+}
+
+.kingdom-header__inner {
+  box-sizing: border-box;
+  max-width: calc(70 * var(--font-size-16));
+  margin-inline: auto;
+  padding-inline: calc(16 / 16 * 1rem);
+}
+
+.kingdom-header__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: calc(16 / 16 * 1rem);
+  row-gap: calc(8 / 16 * 1rem);
+  padding-block: calc(8 / 16 * 1rem);
+}
+
+.kingdom-header__brand {
+  margin-inline-end: auto;
+}
+
+.kingdom-header__brand:any-link,
+.kingdom-header__brand:visited {
+  color: var(--color-neutral-solid-gray-900);
+  text-decoration: none;
+}
+
+.kingdom-header__utils {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(16 / 16 * 1rem);
+}
+
+.kingdom-menu__utils {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(16 / 16 * 1rem);
+  padding: calc(8 / 16 * 1rem) calc(20 / 16 * 1rem) calc(16 / 16 * 1rem);
+}
+
+.kingdom-menu {
+  display: none;
+}
+
+.kingdom-menu.is-open {
+  display: block;
+  padding-bottom: calc(8 / 16 * 1rem);
+}
+
+.kingdom-menu .dads-horizontal-menu {
+  flex-direction: column;
+  border-bottom: 0;
+}
+
+.kingdom-menu .dads-horizontal-menu__item,
+.kingdom-menu .dads-horizontal-menu__item-inner {
+  width: 100%;
+}
+
+.kingdom-main {
+  box-sizing: border-box;
+  max-width: calc(45 * var(--font-size-16));
+  margin-inline: auto;
+  padding: calc(24 / 16 * 1rem) calc(16 / 16 * 1rem) calc(64 / 16 * 1rem);
+}
+
+.kingdom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(8 / 16 * 1rem);
+  margin-block: calc(24 / 16 * 1rem);
+}
+
+.kingdom-article {
+  display: flex;
+  flex-direction: column;
+  row-gap: calc(24 / 16 * 1rem);
+}
+
+.kingdom-lead,
+.kingdom-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: calc(24 / 16 * 1rem);
+}
+
+.kingdom-section {
+  margin-top: calc(40 / 16 * 1rem);
+}
+
+.kingdom-article p {
+  margin: 0;
+}
+
+.kingdom-article .dads-heading__heading {
+  overflow-wrap: anywhere;
+}
+
+.kingdom-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(8 / 16 * 1rem);
+  margin: 0;
+}
+
+.kingdom-article .dads-table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.kingdom-article code {
+  font-family: var(--font-family-mono);
+  font-size: 1em;
+}
+
+.kingdom-footer__inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(16 / 16 * 1rem) calc(24 / 16 * 1rem);
+  max-width: calc(70 * var(--font-size-16));
+  margin-inline: auto;
+  padding: calc(24 / 16 * 1rem) calc(16 / 16 * 1rem) calc(64 / 16 * 1rem);
+}
+
+.kingdom-footer__note {
+  margin: 0;
+  color: var(--color-neutral-solid-gray-700);
+}
+
+@media (min-width: 48rem) {
+  .kingdom-header__inner {
+    padding-inline: calc(24 / 16 * 1rem);
+  }
+
+  .kingdom-header__bar {
+    padding-block: calc(16 / 16 * 1rem) calc(8 / 16 * 1rem);
+  }
+
+  .kingdom-header__toggle {
+    display: none;
+  }
+
+  .kingdom-header__utils {
+    display: flex;
+  }
+
+  .kingdom-menu__utils {
+    display: none;
+  }
+
+  .kingdom-menu,
+  .kingdom-menu.is-open {
+    display: block;
+    padding-bottom: 0;
+  }
+
+  .kingdom-menu .dads-horizontal-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .kingdom-menu .dads-horizontal-menu__item,
+  .kingdom-menu .dads-horizontal-menu__item-inner {
+    width: auto;
+  }
+
+  .kingdom-main {
+    padding: calc(64 / 16 * 1rem) calc(24 / 16 * 1rem);
+  }
+
+  .kingdom-footer__inner {
+    padding-inline: calc(24 / 16 * 1rem);
+  }
+}
